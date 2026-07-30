@@ -1,5 +1,20 @@
 :root {
-  color-scheme: dark;
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --fg: #111111;
+  --border: #111111;
+  --muted: #666666;
+  --error: #b00020;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111111;
+    --fg: #eeeeee;
+    --border: #eeeeee;
+    --muted: #999999;
+    --error: #ff6b6b;
+  }
 }
 
 * {
@@ -12,70 +27,63 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 50% 20%, #2a1a0a, #0d0704 70%);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: #f4ead9;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
 }
 
 main {
   text-align: center;
   padding: 2rem;
+  width: 100%;
+  max-width: 32rem;
 }
 
 h1 {
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: 1.25rem;
+  font-weight: 700;
   letter-spacing: 0.02em;
+  text-transform: uppercase;
   margin: 0 0 2rem;
-  color: #ff8c2b;
-  text-shadow: 0 0 24px rgba(255, 140, 43, 0.35);
 }
 
 #roll {
-  font-size: 1.25rem;
-  font-weight: 600;
-  padding: 0.9em 1.8em;
-  border-radius: 999px;
-  border: none;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.75em 1.5em;
+  border-radius: 0;
+  border: 2px solid var(--border);
   cursor: pointer;
-  background: linear-gradient(135deg, #ff8c2b, #d94f04);
-  color: #150c04;
-  box-shadow: 0 8px 24px rgba(217, 79, 4, 0.4);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  background: var(--bg);
+  color: var(--fg);
 }
 
 #roll:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(217, 79, 4, 0.5);
-}
-
-#roll:active {
-  transform: translateY(0);
+  background: var(--fg);
+  color: var(--bg);
 }
 
 #roll:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: default;
-  transform: none;
+  background: var(--bg);
+  color: var(--fg);
 }
 
 #result {
-  margin-top: 2.5rem;
-  min-height: 3.5rem;
+  margin-top: 2rem;
+  min-height: 2rem;
 }
 
 #result a {
-  font-size: clamp(1.5rem, 5vw, 2.25rem);
+  font-size: 1.1rem;
   font-weight: 700;
-  color: #f4ead9;
-  text-decoration: none;
-  border-bottom: 2px solid #ff8c2b;
-}
-
-#result a:hover {
-  color: #ff8c2b;
+  color: var(--fg);
+  text-decoration: underline;
 }
 
 #result.error {
-  color: #e57373;
-  font-size: 1.1rem;
+  color: var(--error);
+  font-size: 0.9rem;
 }
