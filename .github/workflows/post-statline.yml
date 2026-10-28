@@ -1,9 +1,7 @@
 name: Post random statline
 
 on:
-  schedule:
-    # 10am EST / 11am EDT, cron is UTC-only
-    - cron: "0 15 * * *"
+  # triggered via cron-job.org
   workflow_dispatch:
 
 permissions:
