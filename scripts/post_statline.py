@@ -98,6 +98,7 @@ def format_statline(line: Statline) -> str:
         f"{s['mp']} MP / {s['pts']} PT / {s['trb']} RB / {s['ast']} AS / {s['stl']} ST / {s['blk']} BK"
         f" / {s['tov']} TO / {s['pf']} PF / {format_pct(s['fg_pct'])} FG% ({s['fg']}-{s['fga']})"
         f" / {format_pct(s['fg3_pct'])} 3P% ({s['fg3']}-{s['fg3a']})"
+        f" / {format_pct(s['ft_pct'])} FT% ({s['ft']}-{s['fta']}) / {s['plus_minus']}"
     )
     return f"**{header}**\n{body}"
 
