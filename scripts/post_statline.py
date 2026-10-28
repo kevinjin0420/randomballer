@@ -89,19 +89,17 @@ def format_pct(value: str) -> str:
 def format_statline(line: Statline) -> str:
     s = line.stats
     result = "W" if line.team.score > line.opponent.score else "L"
-    high = max(line.team.score, line.opponent.score)
-    low = min(line.team.score, line.opponent.score)
     location = "vs." if line.is_home else "@"
     header = (
         f"{line.player} ({line.team.abbreviation}) {location} {line.opponent.name}"
-        f" // {line.game_date:%d-%m-%Y} // {result} {high}-{low}"
+        f" // {line.game_date:%d-%m-%Y} // {result} {line.team.score}-{line.opponent.score}"
     )
     body = (
         f"{s['mp']} MP / {s['pts']} PT / {s['trb']} RB / {s['ast']} AS / {s['stl']} ST / {s['blk']} BK"
         f" / {s['tov']} TO / {s['pf']} PF / {format_pct(s['fg_pct'])} FG% ({s['fg']}-{s['fga']})"
-        f" / {format_pct(s['fg3_pct'])} 3P% ({s['fg3']}-{s['fg3a']}) / {s['plus_minus']} +/-"
+        f" / {format_pct(s['fg3_pct'])} 3P% ({s['fg3']}-{s['fg3a']})"
     )
-    return f"{header}\n{body}"
+    return f"**{header}**\n{body}"
 
 
 def collect_statlines(game_date: date) -> list[Statline]:
