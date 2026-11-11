@@ -12,6 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - run: python3 scripts/post_statline.py
+      - id: post
+        continue-on-error: true
+        run: python3 scripts/post_statline.py
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      - if: steps.post.outcome == 'failure'
+        run: sleep 3600 && python3 scripts/post_statline.py
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
